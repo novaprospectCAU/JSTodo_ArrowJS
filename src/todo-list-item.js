@@ -59,24 +59,21 @@ export class TodoListItem {
 
     initTemplate(newListItem);
 
-    const newListItemDeleteButton = newListItem.querySelector(
-      ".todo-list__delete-button"
-    );
-
-    newListItemDeleteButton.addEventListener("click", () => {
-      this.store.items = this.store.items.filter(
-        (currentItem) => currentItem !== this.item
-      );
-    });
-
-    const newListItemCheckButton = newListItem.querySelector(
-      ".todo-list__item-check-button"
-    );
-
-    newListItemCheckButton.addEventListener("click", () => {
-      this.item.isCompleted = !this.item.isCompleted;
-      this.updateAll();
-    });
+    //삭제 버튼 이벤트 리스너
+    newListItem
+      .querySelector(".todo-list__delete-button")
+      .addEventListener("click", () => {
+        this.store.items = this.store.items.filter(
+          (currentItem) => currentItem !== this.item
+        );
+      });
+    //체크 버튼 이벤트 리스너
+    newListItem
+      .querySelector(".todo-list__item-check-button")
+      .addEventListener("click", () => {
+        this.item.isCompleted = !this.item.isCompleted;
+        this.updateAll();
+      });
 
     this.list.append(newListItem);
     return newListItem;
