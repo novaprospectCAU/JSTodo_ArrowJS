@@ -1,36 +1,36 @@
-export class ToggleButton {
-  constructor(root, store, updateAll) {
-    this.store = store;
-    this.toggleButton = root.querySelector(".check-all");
+import { reactive, html } from "https://esm.sh/@arrow-js/core";
 
-    this.toggleButton.addEventListener("click", () => {
-      if (this.store.items.some((storeItem) => !storeItem.isCompleted)) {
-        for (const item of this.store.items) {
+import { store } from "./store.js";
+
+function makeToggleStatus() {
+  const storeItemsLength = store.items.length;
+  if (storeItemsLength) {
+    for (const item of store.items) {
+      if (!item.isCompleted) {
+        return "check-all--off";
+      }
+    }
+    return "check-all--on";
+  } else {
+    return "check-all--initial";
+  }
+}
+
+export const toggleButton = html`
+  <button
+    class="${() => `check-all ${makeToggleStatus()}`}"
+    @click="${() => {
+      if (store.items.some((item) => !item.isCompleted)) {
+        for (let item of store.items) {
           item.isCompleted = true;
         }
       } else {
-        for (const item of this.store.items) {
+        for (let item of store.items) {
           item.isCompleted = false;
         }
       }
-      updateAll();
-    });
-  }
-  update() {
-    if (this.store.items.length === 0) {
-      this.toggleButton.classList.add("check-all--initial");
-      this.toggleButton.classList.remove("check-all--off");
-      this.toggleButton.classList.remove("check-all--on");
-    } else {
-      if (this.store.items.some((item) => !item.isCompleted)) {
-        this.toggleButton.classList.remove("check-all--initial");
-        this.toggleButton.classList.add("check-all--off");
-        this.toggleButton.classList.remove("check-all--on");
-      } else {
-        this.toggleButton.classList.remove("check-all--initial");
-        this.toggleButton.classList.remove("check-all--off");
-        this.toggleButton.classList.add("check-all--on");
-      }
-    }
-  }
-}
+    }}"
+  >
+    ❯
+  </button>
+`;
