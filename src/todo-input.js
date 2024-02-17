@@ -1,29 +1,25 @@
-/**
- * 새로운 입력을 받는 개체
- */
-export class TodoInput {
-  constructor(root, store, updateAll) {
-    const todoInput = root.querySelector(".todo-input");
-    this.store = store;
+import { reactive, html } from "https://esm.sh/@arrow-js/core";
+import { getNewId, store } from "./store.js";
 
-    todoInput.addEventListener("keydown", (e) => {
-      //1
-      if (e.key === "Enter" && !e.isComposing) {
-        const string = todoInput.value.trim();
-        if (string !== "") {
-          //2
-          //id는 제일 마지막 원소의 id + 1이다. (if sort기능이 있다면 에러 발생 여지 존재)
-          let newItem = {
-            id: this.store.id,
-            text: string,
-            isCompleted: false,
-          };
-          store.items.unshift(newItem);
-          this.store.id++;
-          todoInput.value = "";
-        }
+export const todoInput = html` <input
+  class="todo-input"
+  type="text"
+  placeholder="What needs to be done?"
+  autofocus
+  @keydown="${(e) => {
+    //1
+    if (e.key === "Enter" && !e.isComposing) {
+      const string = e.target.value.trim();
+      if (string) {
+        //2
+        const newItem = {
+          id: getNewId(),
+          text: string,
+          isCompleted: false,
+        };
+        store.items.unshift(newItem);
+        e.target.value = "";
       }
-    });
-  }
-  update() {}
-}
+    }
+  }}"
+/>`;

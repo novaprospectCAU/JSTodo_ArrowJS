@@ -1,6 +1,8 @@
 import { reactive, html } from "https://esm.sh/@arrow-js/core";
-import { App } from "./app.js";
+import { app } from "./app.js";
 
-const apps = document.querySelectorAll(".main");
+const appElements = document.querySelectorAll(".main");
 
-const app1 = new App(apps[0]);
+// const app1 = new App(apps[0]);
+
+app(appElements[0]);
