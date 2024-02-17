@@ -25,7 +25,15 @@ function todoListItem(item) {
       </div>
       <input class="todo-list__item-input todo-list--switch" type="text" />
     </div>
-    <button class="todo-list__delete-button">X</button>
+    <button
+      class="todo-list__delete-button"
+      @click="${() =>
+        (store.items = store.items.filter(
+          (storeItem) => storeItem.id !== item.id
+        ))}"
+    >
+      X
+    </button>
   </li>`;
 }
 
