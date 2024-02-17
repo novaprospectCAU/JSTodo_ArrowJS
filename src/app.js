@@ -4,7 +4,7 @@ import { todoInput } from "./todo-input.js";
 import { todoList } from "./todo-list.js";
 // import { TodoList } from "./todo-list.js";
 // import { ToggleButton } from "./toggle-button.js";
-// import { Toolbar } from "./toolbar.js";
+import { toolbar } from "./toolbar.js";
 
 // export class App {
 //   constructor(root) {
@@ -74,16 +74,5 @@ export const app = html` <div class="main">
     <button class="check-all check-all--initial">❯</button>
     ${todoInput}
   </div>
-  ${todoList}
-  <div class="todo-list__menu todo-list__menu--hiding">
-    <div class="menu__count"></div>
-    <div class="menu__control">
-      <button class="control-all">All</button>
-      <button class="control-active control-button--unclicked">Active</button>
-      <button class="control-completed control-button--unclicked">
-        Completed
-      </button>
-    </div>
-    <button class="menu-clear">Clear completed</button>
-  </div>
+  ${todoList} ${toolbar}
 </div>`;

@@ -5,7 +5,15 @@ import { store } from "./store.js";
  * `<li>` 컴포넌트
  */
 function todoListItem(item) {
-  return html` <li class="todo-list__item">
+  return html` <li
+    class="${() =>
+      `todo-list__item ${
+        (store.currentFilter === "completed" && !item.isCompleted) ||
+        (store.currentFilter === "active" && item.isCompleted)
+          ? "todo-list__item--hiding"
+          : ""
+      }`}"
+  >
     <div class="todo-list__item-left">
       <button
         class="todo-list__item-check-button"
