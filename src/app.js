@@ -1,6 +1,7 @@
 import { reactive, html } from "https://esm.sh/@arrow-js/core";
 
 import { todoInput } from "./todo-input.js";
+import { todoList } from "./todo-list.js";
 // import { TodoList } from "./todo-list.js";
 // import { ToggleButton } from "./toggle-button.js";
 // import { Toolbar } from "./toolbar.js";
@@ -73,7 +74,7 @@ export const app = html` <div class="main">
     <button class="check-all check-all--initial">❯</button>
     ${todoInput}
   </div>
-  <ul class="todo-list"></ul>
+  ${todoList}
   <div class="todo-list__menu todo-list__menu--hiding">
     <div class="menu__count"></div>
     <div class="menu__control">
