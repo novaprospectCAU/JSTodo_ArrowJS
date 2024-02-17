@@ -21,8 +21,6 @@ export class TodoInput {
           store.items.unshift(newItem);
           this.store.id++;
           todoInput.value = "";
-          //3
-          updateAll();
         }
       }
     });

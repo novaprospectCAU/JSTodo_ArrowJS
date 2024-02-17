@@ -6,15 +6,12 @@ export class Option {
     this.filterCompleted = root.querySelector(".control-completed");
     this.filterAll.addEventListener("click", () => {
       this.store.currentFilter = "all";
-      updateAll();
     });
     this.filterActive.addEventListener("click", () => {
       this.store.currentFilter = "active";
-      updateAll();
     });
     this.filterCompleted.addEventListener("click", () => {
       this.store.currentFilter = "completed";
-      updateAll();
     });
   }
   update() {

@@ -7,7 +7,6 @@ export class ClearButton {
 
     this.clearButton.addEventListener("click", () => {
       this.store.items = this.store.items.filter((item) => !item.isCompleted);
-      updateAll();
     });
   }
   update() {
