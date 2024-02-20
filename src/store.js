@@ -6,7 +6,7 @@ export const store = reactive({
   currentFilter: "all",
 });
 
-export let lastUsedId = 0;
+let lastUsedId = 0;
 
 export function getNewId() {
   return lastUsedId++;
